@@ -95,7 +95,7 @@ class IslamicPrayerDataUpdateCoordinator(DataUpdateCoordinator[dict[str, datetim
 
         The least surprising behaviour is to load the next day's prayer times only
         after the current day's prayers are complete. We will take the fiqhi opinion
-        that Isha should be prayed before Islamic midnight (which may be before or after 12:00 midnight),
+        that Ishaa should be prayed before Islamic midnight (which may be before or after 12:00 midnight),
         and thus we will switch to the next day's timings at Islamic midnight.
 
         The +1s is to ensure that any automations predicated on the arrival of Islamic midnight will run.
@@ -115,10 +115,10 @@ class IslamicPrayerDataUpdateCoordinator(DataUpdateCoordinator[dict[str, datetim
         """Update sensors with new prayer times.
 
         Prayer time calculations "roll over" at 12:00 midnight - but this does not mean that all prayers
-        occur within that Gregorian calendar day. For instance Jasper, Alta. sees Isha occur after 00:00 in the summer.
+        occur within that Gregorian calendar day. For instance Jasper, Alta. sees Ishaa occur after 00:00 in the summer.
         It is similarly possible (albeit less likely) that Fajr occurs before 00:00.
 
-        As such, to ensure that no prayer times are "unreachable" (e.g. we always see the Isha timestamp pass before loading the next day's times),
+        As such, to ensure that no prayer times are "unreachable" (e.g. we always see the Ishaa timestamp pass before loading the next day's times),
         we calculate 3 days' worth of times (-1, 0, +1 days) and select the appropriate set based on Islamic midnight.
 
         The calculation is inexpensive, so there is no need to cache it.
